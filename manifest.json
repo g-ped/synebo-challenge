@@ -1,0 +1,7 @@
+{
+  "short_name": "Todo App",
+  "name": "Todo App Challenge Synebo",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone"
+}

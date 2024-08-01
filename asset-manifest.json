@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/synebo-challenge/static/css/main.731a6312.css",
+    "main.js": "/synebo-challenge/static/js/main.1dfe42fc.js",
+    "static/js/453.ac79db8d.chunk.js": "/synebo-challenge/static/js/453.ac79db8d.chunk.js",
+    "static/media/bg-desktop-light.jpg": "/synebo-challenge/static/media/bg-desktop-light.3508d620efd5a52bb4ce.jpg",
+    "index.html": "/synebo-challenge/index.html",
+    "static/media/icon-check.svg": "/synebo-challenge/static/media/icon-check.a8fb15d0278c8e312df5.svg",
+    "main.731a6312.css.map": "/synebo-challenge/static/css/main.731a6312.css.map",
+    "main.1dfe42fc.js.map": "/synebo-challenge/static/js/main.1dfe42fc.js.map",
+    "453.ac79db8d.chunk.js.map": "/synebo-challenge/static/js/453.ac79db8d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.731a6312.css",
+    "static/js/main.1dfe42fc.js"
+  ]
+}
