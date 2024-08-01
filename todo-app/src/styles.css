@@ -1,6 +1,6 @@
 body {
   font-family: "Josefin Sans", sans-serif;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .todo-app {
@@ -21,10 +21,6 @@ body {
     max-width: 375px;
     width: 80%;
   }
-}
-
-[type="radio"] {
-  margin: 0;
 }
 
 .todo-header {
@@ -70,7 +66,7 @@ body {
   flex: 1;
   border: none;
   background-color: transparent;
-  /* caret-color: blue;  */
+  caret-color: hsl(220, 98%, 61%);
 }
 
 .create-input:focus {
@@ -87,7 +83,7 @@ body {
   box-shadow: 0 5px 50px rgba(0, 0, 0, 0.2);
 
   & > * + * {
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #ddd;
   }
 }
 
@@ -97,11 +93,46 @@ body {
   padding: 0 13px;
   position: relative;
   cursor: pointer;
-  color: #666;
+  color: #333;
+  align-items: center;
 }
 
-.todo-item-checkbox {
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  background-color: transparent;
   cursor: pointer;
+}
+
+.custom-checkbox.disabled:hover {
+  border: 1px solid #ccc;
+}
+
+.custom-checkbox:hover {
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background-image: linear-gradient(white, white),
+    linear-gradient(to bottom right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.custom-checkbox.completed {
+  background: url("/public/icon-check.svg"),
+    linear-gradient(to bottom right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  background-repeat: no-repeat;
+  background-position: center;
+  border-color: white;
+}
+
+.icon-check {
+  display: none;
+}
+
+.custom-checkbox.completed .icon-check {
+  display: block;
 }
 
 .delete-button {
@@ -176,9 +207,17 @@ body {
   color: #777;
 }
 
+.todo-list-mobile-filters button:hover {
+  font-weight: 700;
+}
+
 .drag-drop-note {
   text-align: center;
   font-size: 0.8rem;
   color: #777;
   padding: 2rem 0;
+}
+
+.current-filter {
+  color: hsl(220, 98%, 61%) !important;
 }

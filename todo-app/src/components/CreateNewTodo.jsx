@@ -14,7 +14,7 @@ function CreateNewTodo({ theme, todos, submitTodo }) {
 
   return (
     <div className="create-new-todo">
-      <input type="radio" name="create-radio" id="create-radio" disabled />
+      <div className="custom-checkbox disabled"></div>
       <input
         className="create-input"
         type="text"

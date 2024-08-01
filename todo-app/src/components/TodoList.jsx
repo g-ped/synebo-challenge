@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 function TodoList({ theme, todos, setTodos }) {
   const [isMobile, setIsMobile] = useState(false);
+  const [filter, setFilter] = useState("all-filter");
+  const [filteredTodos, setFilteredTodos] = useState(todos);
 
   useEffect(() => {
     const handleResize = () => {
@@ -16,37 +18,80 @@ function TodoList({ theme, todos, setTodos }) {
     };
   }, []);
 
+  useEffect(() => {
+    const handleFilter = () => {
+      switch (filter) {
+        case "all-filter":
+          return todos;
+        case "active-filter":
+          return todos.filter((todo) => !todo.isCompleted);
+        case "completed-filter":
+          return todos.filter((todo) => todo.isCompleted);
+        default:
+          return todos;
+      }
+    };
+
+    setFilteredTodos(handleFilter());
+  }, [filter, todos, setFilteredTodos]);
+
   const handleComplete = (index) => {
-    const newTodos = [...todos];
+    const newTodos = [...filteredTodos];
     newTodos[index].isCompleted = !newTodos[index].isCompleted;
     setTodos(newTodos);
   };
 
   const handleDelete = (index) => {
-    const newTodos = [...todos];
+    const newTodos = [...filteredTodos];
     newTodos.splice(index, 1);
     setTodos(newTodos);
   };
 
   const handleClearCompleted = () => {
-    const newTodos = todos.filter((todo) => !todo.isCompleted);
+    const newTodos = filteredTodos.filter((todo) => !todo.isCompleted);
     setTodos(newTodos);
+  };
+
+  const handleDragStart = (event, index) => {
+    event.dataTransfer.setData("text/plain", index);
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDrop = (event, index) => {
+    event.preventDefault();
+    const draggedIndex = parseInt(event.dataTransfer.getData("text/plain"));
+
+    if (draggedIndex !== index) {
+      const newTodoItems = [...filteredTodos];
+      const [removedItem] = newTodoItems.splice(draggedIndex, 1);
+      newTodoItems.splice(index, 0, removedItem);
+      setFilteredTodos(newTodoItems);
+    }
   };
 
   return (
     <>
       <ul className="todo-list">
-        {todos.map((todo, index) => (
+        {filteredTodos.map((todo, index) => (
           <li
             key={index}
+            draggable="true"
+            onDragStart={(event) => handleDragStart(event, index)}
+            onDragOver={handleDragOver}
+            onDrop={(event) => handleDrop(event, index)}
             className={`todo-item ${todo.isCompleted ? "completed" : ""}`}
           >
-            <input
-              className="todo-item-checkbox"
-              type="radio"
+            <div
+              className={`custom-checkbox ${
+                todo.isCompleted ? "completed" : ""
+              }`}
               onClick={() => handleComplete(index)}
-              checked={todo.isCompleted}
-            />
+            >
+              {todo.isCompleted && <span className="icon-check"></span>}
+            </div>
             <p>{todo.text}</p>
             <button
               className="delete-button"
@@ -61,9 +106,28 @@ function TodoList({ theme, todos, setTodos }) {
           <p>{todos.filter((todo) => !todo.isCompleted).length} items left</p>
           {!isMobile && (
             <div className="todo-list-footer-filters">
-              <button className="all-filter">All</button>
-              <button className="active-filter">Active</button>
-              <button className="completed-filter">Completed</button>
+              <button
+                className={`${filter === "all-filter" ? "current-filter" : ""}`}
+                onClick={() => setFilter("all-filter")}
+              >
+                All
+              </button>
+              <button
+                className={`${
+                  filter === "active-filter" ? "current-filter" : ""
+                }`}
+                onClick={() => setFilter("active-filter")}
+              >
+                Active
+              </button>
+              <button
+                className={`${
+                  filter === "completed-filter" ? "current-filter" : ""
+                }`}
+                onClick={() => setFilter("completed-filter")}
+              >
+                Completed
+              </button>
             </div>
           )}
           <button onClick={handleClearCompleted}>Clear completed</button>
@@ -72,9 +136,26 @@ function TodoList({ theme, todos, setTodos }) {
 
       {isMobile && (
         <div className="todo-list-mobile-filters">
-          <button className="all-filter">All</button>
-          <button className="active-filter">Active</button>
-          <button className="completed-filter">Completed</button>
+          <button
+            className={`${filter === "all-filter" ? "current-filter" : ""}`}
+            onClick={() => setFilter("all-filter")}
+          >
+            All
+          </button>
+          <button
+            className={`${filter === "active-filter" ? "current-filter" : ""}`}
+            onClick={() => setFilter("active-filter")}
+          >
+            Active
+          </button>
+          <button
+            className={`${
+              filter === "completed-filter" ? "current-filter" : ""
+            }`}
+            onClick={() => setFilter("completed-filter")}
+          >
+            Completed
+          </button>
         </div>
       )}
     </>
