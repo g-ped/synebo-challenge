@@ -10,6 +10,10 @@ body {
   height: 100vh;
 }
 
+.todo-app.dark {
+  background-color: #171823;
+}
+
 .main-container {
   max-width: 500px;
   margin: 0 auto;
@@ -35,11 +39,11 @@ body {
 }
 
 .dark-header {
-  color: white;
+  color: #171823;
 }
 
 .light-header {
-  color: black;
+  color: white;
 }
 
 .theme-button {
@@ -147,6 +151,7 @@ body {
 
 .icon-dark {
   background: url("/public/icon-moon.svg");
+  filter: brightness(0.15);
   height: 26px;
   width: 26px;
 }

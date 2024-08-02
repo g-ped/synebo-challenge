@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-function CreateNewTodo({ theme, todos, submitTodo }) {
+function CreateNewTodo({ todos, submitTodo }) {
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef(null);
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function TodoList({ theme, todos, setTodos }) {
+function TodoList({ todos, setTodos }) {
   const [isMobile, setIsMobile] = useState(false);
   const [filter, setFilter] = useState("all-filter");
   const [filteredTodos, setFilteredTodos] = useState(todos);

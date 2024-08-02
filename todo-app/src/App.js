@@ -5,15 +5,15 @@ import CreateNewTodo from "./components/CreateNewTodo";
 import TodoList from "./components/TodoList";
 
 function App() {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
   const [todos, setTodos] = useState([]);
 
   return (
-    <div className="todo-app">
+    <div className={`todo-app ${theme}`}>
       <div className="main-container">
         <Header theme={theme} setTheme={setTheme} />
-        <CreateNewTodo theme={theme} todos={todos} submitTodo={setTodos} />
-        <TodoList theme={theme} todos={todos} setTodos={setTodos} />
+        <CreateNewTodo todos={todos} submitTodo={setTodos} />
+        <TodoList todos={todos} setTodos={setTodos} />
         <h3 className="drag-drop-note">Drag and drop to reorder list</h3>
       </div>
     </div>
