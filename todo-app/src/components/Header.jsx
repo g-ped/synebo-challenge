@@ -8,10 +8,10 @@ function Header({ theme, setTheme }) {
           theme === "dark" ? setTheme("light") : setTheme("dark");
         }}
       >
-        <img
-          src={`/icon-${theme === "dark" ? "moon" : "sun"}.svg`}
+        <div
+          className={`icon-${theme}`}
           alt={`${theme}-theme theme-button`}
-        ></img>
+        ></div>
       </button>
     </header>
   );

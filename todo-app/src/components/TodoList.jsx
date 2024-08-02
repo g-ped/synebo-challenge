@@ -98,7 +98,7 @@ function TodoList({ theme, todos, setTodos }) {
               onClick={() => handleDelete(index)}
               style={{ opacity: isMobile ? "1" : "0" }}
             >
-              <img src="/icon-cross.svg" alt="remove-todo" />
+              <div alt="remove-todo" className="icon-cross" />
             </button>
           </li>
         ))}

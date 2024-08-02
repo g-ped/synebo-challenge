@@ -131,6 +131,26 @@ body {
   display: none;
 }
 
+.icon-cross {
+  background: url("/public/icon-cross.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 26px;
+  width: 26px;
+}
+
+.icon-light {
+  background: url("/public/icon-sun.svg");
+  height: 26px;
+  width: 26px;
+}
+
+.icon-dark {
+  background: url("/public/icon-moon.svg");
+  height: 26px;
+  width: 26px;
+}
+
 .custom-checkbox.completed .icon-check {
   display: block;
 }
